@@ -17,7 +17,9 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    unoptimized: true, // Disable Image Optimization API
   },
+  output: 'export',
 };
 
 export default nextConfig;
