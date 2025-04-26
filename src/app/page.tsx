@@ -44,7 +44,7 @@ const ProjectCard = ({title, description, imageUrl, link}: {
   imageUrl: string,
   link: string
 }) => (
-  <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+  <Card className="border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
     <CardHeader>
       <CardTitle className="text-xl font-semibold">{title}</CardTitle>
       <CardDescription className="text-gray-400">{description}</CardDescription>
@@ -98,6 +98,19 @@ export default function Home() {
       imageUrl: 'https://picsum.photos/600/400',
       link: '#',
     },
+  ];
+
+  const itunesAlbums = [
+    'https://picsum.photos/400/400',
+    'https://picsum.photos/401/401',
+    'https://picsum.photos/402/402',
+    'https://picsum.photos/403/403',
+    'https://picsum.photos/404/404',
+    'https://picsum.photos/405/405',
+    'https://picsum.photos/406/406',
+    'https://picsum.photos/407/407',
+    'https://picsum.photos/408/408',
+    'https://picsum.photos/409/409',
   ];
 
   return (
@@ -174,6 +187,29 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Parallax>
+      </section>
+
+      {/* iTunes Cover Art Section */}
+      <section className="relative py-24">
+        <Parallax offset={10}>
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-semibold mb-12 text-center">My Inspirations</h2>
+            <div className="overflow-x-auto whitespace-nowrap py-6">
+              <div className="inline-flex space-x-6 transition-transform duration-300">
+                {itunesAlbums.map((album, index) => (
+                  <Image
+                    key={index}
+                    src={album}
+                    alt={`Album ${index + 1}`}
+                    width={200}
+                    height={200}
+                    className="rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 object-cover"
+                  />
                 ))}
               </div>
             </div>
