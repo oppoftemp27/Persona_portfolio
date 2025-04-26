@@ -149,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="relative py-24 bg-gray-900">
+      <section className="relative py-24">
         <Parallax offset={15}>
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-semibold mb-12 text-center">Featured Projects</h2>
