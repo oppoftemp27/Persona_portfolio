@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {Button} from '@/components/ui/button';
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {ArrowRight} from 'lucide-react';
 import {useEffect, useRef, useState} from 'react';
 
@@ -37,34 +36,6 @@ const Parallax = ({children, offset = 10}: { children: React.ReactNode, offset?:
     </div>
   );
 };
-
-const ProjectCard = ({title, description, imageUrl, link}: {
-  title: string,
-  description: string,
-  imageUrl: string,
-  link: string
-}) => (
-  <Card className="border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-    <CardHeader>
-      <CardTitle className="text-xl font-semibold">{title}</CardTitle>
-      <CardDescription className="text-gray-400">{description}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <Image
-        src={imageUrl}
-        alt={title}
-        width={600}
-        height={400}
-        className="rounded-md mb-4"
-      />
-      <div className="flex justify-between">
-        <Link href={link} className="text-coral hover:underline">
-          Learn More
-        </Link>
-      </div>
-    </CardContent>
-  </Card>
-);
 
 export default function Home() {
   const projects = [
@@ -223,7 +194,7 @@ export default function Home() {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl font-semibold mb-8">Connect With Me</h2>
             <p className="text-lg text-gray-300 mb-12">
-              Let's collaborate and bring innovative ideas to life.
+              Let&apos;s collaborate and bring innovative ideas to life.
             </p>
             <div className="flex justify-center space-x-6">
               <Link href="https://linkedin.com/in/sbhaskar" className="text-coral hover:underline">
