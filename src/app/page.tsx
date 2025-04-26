@@ -1,194 +1,190 @@
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
+import {Button} from '@/components/ui/button';
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
+import {ArrowRight} from 'lucide-react';
+import {useEffect, useRef, useState} from 'react';
+
+const Parallax = ({children, offset = 10}: { children: React.ReactNode, offset?: number }) => {
+  const [yOffset, setYOffset] = useState(0);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = (containerRef.current as HTMLDivElement).getBoundingClientRect();
+      const visibleHeight = window.innerHeight;
+      const elementTop = rect.top;
+      const elementBottom = rect.bottom;
+      const isVisible = (elementTop <= visibleHeight) && (elementBottom >= 0);
+
+      if (isVisible) {
+        setYOffset(window.pageYOffset * offset / 100);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call on mount to position correctly
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [offset]);
+
+  return (
+    <div ref={containerRef} style={{transform: `translateY(${yOffset}px)`}}>
+      {children}
+    </div>
+  );
+};
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-200 text-gray-900 py-20">
-      <div className="container mx-auto px-4">
-        {/* Hero Section */}
-        <section className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 text-primary">
-            Unleash Your Potential
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center text-center">
+        <Parallax offset={20}>
+          <h1 className="text-6xl font-bold tracking-tight leading-none md:text-7xl lg:text-8xl">
+            Innovation. Simplicity. Excellence.
           </h1>
-          <p className="text-xl text-gray-700 mb-8">
-            Crafting digital experiences that inspire and transform.
+          <p className="mt-4 text-lg md:text-xl lg:text-2xl text-gray-400">
+            A portfolio dedicated to creating impactful digital experiences.
           </p>
-          <Button size="lg" className="px-8">
-            Explore More <ArrowRight className="ml-2" />
+          <Button size="lg" className="mt-8 px-8 bg-white text-black hover:bg-gray-100">
+            Explore My Work <ArrowRight className="ml-2"/>
           </Button>
-        </section>
+        </Parallax>
+      </section>
 
-        {/* Services Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-10 text-center text-primary">
-            Our Expertise
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  Web Development
-                </CardTitle>
-                <CardDescription>
-                  Cutting-edge solutions for web applications.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Image
-                  src="https://picsum.photos/400/200"
-                  alt="Web Development"
-                  width={400}
-                  height={200}
-                  className="rounded-md mb-4"
-                />
-                <p className="text-gray-600">
-                  We build responsive, scalable, and secure web applications tailored to your needs.
+      {/* About Section */}
+      <section className="relative py-24">
+        <Parallax offset={10}>
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-semibold mb-12 text-center">About Me</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p className="text-lg text-gray-300 mb-6">
+                  Driven by a passion for technology and design, I strive to create solutions that are not only
+                  functional but also beautiful. With a focus on user experience and simplicity, my goal is to make a
+                  meaningful impact through every project.
                 </p>
-              </CardContent>
-            </Card>
-
-            {/* Service Card 2 */}
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  Mobile App Development
-                </CardTitle>
-                <CardDescription>
-                  Native and cross-platform mobile solutions.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Image
-                  src="https://picsum.photos/400/200"
-                  alt="Mobile App Development"
-                  width={400}
-                  height={200}
-                  className="rounded-md mb-4"
-                />
-                <p className="text-gray-600">
-                  Reach your audience on the go with our innovative mobile app development services.
+                <p className="text-lg text-gray-300">
+                  From web development to mobile applications, I bring a unique blend of creativity and technical
+                  expertise to every challenge.
                 </p>
-              </CardContent>
-            </Card>
-
-            {/* Service Card 3 */}
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  UI/UX Design
-                </CardTitle>
-                <CardDescription>
-                  Intuitive and visually stunning designs.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+              </div>
+              <div className="flex justify-center">
                 <Image
-                  src="https://picsum.photos/400/200"
-                  alt="UI/UX Design"
+                  src="https://picsum.photos/500/500"
+                  alt="About Me"
                   width={400}
-                  height={200}
-                  className="rounded-md mb-4"
+                  height={400}
+                  className="rounded-full shadow-lg"
                 />
-                <p className="text-gray-600">
-                  We craft user-centered designs that enhance usability and engagement.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
-        </section>
+        </Parallax>
+      </section>
 
-        {/* Portfolio Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-semibold mb-10 text-center text-primary">
-            Recent Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Project Card 1 */}
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  Project Alpha
-                </CardTitle>
-                <CardDescription>
-                  A cutting-edge e-commerce platform.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Image
-                  src="https://picsum.photos/600/300"
-                  alt="Project Alpha"
-                  width={600}
-                  height={300}
-                  className="rounded-md mb-4"
-                />
-                <div className="flex justify-between">
-                  <Link href="#" className="text-accent hover:underline">
-                    Live Demo
-                  </Link>
-                  <Link href="#" className="text-accent hover:underline">
-                    GitHub Repo
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+      {/* Projects Section */}
+      <section className="relative py-24 bg-gray-900">
+        <Parallax offset={15}>
+          <div className="container mx-auto px-4">
+            <h2 className="text-4xl font-semibold mb-12 text-center">Featured Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Project Card 1 */}
+              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">Project Vision</CardTitle>
+                  <CardDescription className="text-gray-400">Reimagining e-commerce for the modern world.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Image
+                    src="https://picsum.photos/600/400"
+                    alt="Project Vision"
+                    width={600}
+                    height={400}
+                    className="rounded-md mb-4"
+                  />
+                  <div className="flex justify-between">
+                    <Link href="#" className="text-coral hover:underline">
+                      Learn More
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Project Card 2 */}
-            <Card className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold">
-                  Project Beta
-                </CardTitle>
-                <CardDescription>
-                  A revolutionary social networking app.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Image
-                  src="https://picsum.photos/600/300"
-                  alt="Project Beta"
-                  width={600}
-                  height={300}
-                  className="rounded-md mb-4"
-                />
-                <div className="flex justify-between">
-                  <Link href="#" className="text-accent hover:underline">
-                    Live Demo
-                  </Link>
-                  <Link href="#" className="text-accent hover:underline">
-                    GitHub Repo
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+              {/* Project Card 2 */}
+              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">Project Clarity</CardTitle>
+                  <CardDescription className="text-gray-400">Simplifying communication through intuitive design.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Image
+                    src="https://picsum.photos/600/400"
+                    alt="Project Clarity"
+                    width={600}
+                    height={400}
+                    className="rounded-md mb-4"
+                  />
+                  <div className="flex justify-between">
+                    <Link href="#" className="text-coral hover:underline">
+                      Learn More
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Project Card 3 */}
+              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="text-xl font-semibold">Project Precision</CardTitle>
+                  <CardDescription className="text-gray-400">Developing innovative solutions for data analysis.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Image
+                    src="https://picsum.photos/600/400"
+                    alt="Project Precision"
+                    width={600}
+                    height={400}
+                    className="rounded-md mb-4"
+                  />
+                  <div className="flex justify-between">
+                    <Link href="#" className="text-coral hover:underline">
+                      Learn More
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
-        </section>
+        </Parallax>
+      </section>
 
-        {/* Contact Section */}
-        <section className="text-center">
-          <h2 className="text-3xl font-semibold mb-4 text-primary">
-            Let's Connect
-          </h2>
-          <p className="text-lg text-gray-700 mb-8">
-            Ready to bring your vision to life? Contact us today!
-          </p>
-          <div className="flex justify-center space-x-6">
-            <Link href="#" className="text-accent hover:underline">
-              LinkedIn
-            </Link>
-            <Link href="#" className="text-accent hover:underline">
-              GitHub
-            </Link>
-            <Link href="#" className="text-accent hover:underline">
-              Email
-            </Link>
+      {/* Contact Section */}
+      <section className="relative py-24">
+        <Parallax offset={5}>
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-semibold mb-8">Connect With Me</h2>
+            <p className="text-lg text-gray-300 mb-12">
+              Let's collaborate and bring innovative ideas to life.
+            </p>
+            <div className="flex justify-center space-x-6">
+              <Link href="#" className="text-coral hover:underline">
+                LinkedIn
+              </Link>
+              <Link href="#" className="text-coral hover:underline">
+                GitHub
+              </Link>
+            </div>
+            <p className="mt-8 text-gray-500">
+              © {new Date().getFullYear()} Portfolio. All rights reserved.
+            </p>
           </div>
-        </section>
-      </div>
+        </Parallax>
+      </section>
     </div>
   );
 }
