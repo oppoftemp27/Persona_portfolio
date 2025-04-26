@@ -1,0 +1,62 @@
+
+# Project Initialization Details
+
+## Project Name: Persona Portfolio
+
+## Description:
+A personal portfolio website built with Next.js, Shadcn UI, and Tailwind CSS to showcase skills, experience, and selected projects.
+
+## Core Features:
+- Homepage Introduction: A brief introduction highlighting key skills and experience.
+- Project Showcase: Selected projects with descriptions and links to live demos or GitHub repositories.
+- Contact Information: Links to professional profiles (LinkedIn, GitHub, etc.).
+
+## Technologies Used:
+- Next.js (App Router)
+- TypeScript
+- Shadcn UI
+- Tailwind CSS
+- Lucide React
+- Genkit
+- React Hook Form
+- Zod
+
+## UI Styling:
+- Primary color: Navy blue (#2E3A87)
+- Secondary color: Off-white (#F8F8FF)
+- Accent color: Coral (#FF7F50)
+- Clean, single-page layout with smooth scrolling.
+- Subtle animations and hover effects.
+- Rounded corners, shadows, and drop shadows for elements.
+- Theme defined in src/app/globals.css using HSL CSS variables.
+
+## Project Files:
+- .env: Environment variables (API keys, etc.)
+- README.md: Project description and setup instructions.
+- components.json: Shadcn UI configuration.
+- next.config.ts: Next.js configuration.
+- package.json: Project dependencies and scripts.
+- src/ai/ai-instance.ts: Genkit AI instance configuration.
+- src/ai/dev.ts: Development-related Genkit configurations.
+- src/app/globals.css: Global CSS file (Tailwind CSS directives and custom styles).
+- src/app/layout.tsx: Root layout component.
+- src/app/page.tsx: Main homepage component.
+- src/components/ui/*: Reusable UI components (Shadcn UI).
+- src/hooks/use-mobile.tsx: Hook to detect mobile devices.
+- src/hooks/use-toast.ts: Hook for managing toasts.
+- src/lib/utils.ts: Utility functions.
+- tailwind.config.ts: Tailwind CSS configuration.
+- tsconfig.json: TypeScript configuration.
+
+## Genkit Flows:
+- None currently implemented.
+
+## Notes:
+- The application uses the Next.js App Router.
+- Server Components are preferred.
+- TypeScript with import type is used.
+- Shadcn UI components are used where possible.
+- Tailwind CSS is used with semantic classes.
+- Error handling with error.js boundary files at appropriate route segments.
+
+    
