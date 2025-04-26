@@ -106,10 +106,11 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center text-center">
         <Parallax offset={20}>
           <h1 className="text-6xl font-bold tracking-tight leading-none md:text-7xl lg:text-8xl">
-            Innovation. Simplicity. Excellence.
+            Shashvath Bhaskar
           </h1>
           <p className="mt-4 text-lg md:text-xl lg:text-2xl text-gray-400">
-            A portfolio dedicated to creating impactful digital experiences.
+            Strategic Product Manager with 7+ years of expertise. Transforming complex challenges into market-winning
+            solutions.
           </p>
           <Button size="lg" className="mt-8 px-8 bg-white text-black hover:bg-gray-100">
             Explore My Work <ArrowRight className="ml-2"/>
@@ -125,13 +126,14 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
                 <p className="text-lg text-gray-300 mb-6">
-                  Driven by a passion for technology and design, I strive to create solutions that are not only
-                  functional but also beautiful. With a focus on user experience and simplicity, my goal is to make a
-                  meaningful impact through every project.
+                  Strategic Product Manager with 7+ years of expertise transforming complex challenges into market-winning
+                  solutions while consistently rallying teams to deliver exceptional user experiences and measurable
+                  business results.
                 </p>
                 <p className="text-lg text-gray-300">
-                  From web development to mobile applications, I bring a unique blend of creativity and technical
-                  expertise to every challenge.
+                  Driving multimodal AI software initiatives, leading release management for critical design suites, and
+                  engineering consolidated data dashboards. Expertise in product strategy, AI tools, and agile
+                  frameworks.
                 </p>
               </div>
               <div className="flex justify-center">
@@ -188,10 +190,10 @@ export default function Home() {
               Let's collaborate and bring innovative ideas to life.
             </p>
             <div className="flex justify-center space-x-6">
-              <Link href="#" className="text-coral hover:underline">
+              <Link href="https://linkedin.com/in/sbhaskar" className="text-coral hover:underline">
                 LinkedIn
               </Link>
-              <Link href="#" className="text-coral hover:underline">
+              <Link href="https://github.com/oppoftemp27" className="text-coral hover:underline">
                 GitHub
               </Link>
             </div>
