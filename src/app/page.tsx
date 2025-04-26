@@ -38,7 +38,68 @@ const Parallax = ({children, offset = 10}: { children: React.ReactNode, offset?:
   );
 };
 
+const ProjectCard = ({title, description, imageUrl, link}: {
+  title: string,
+  description: string,
+  imageUrl: string,
+  link: string
+}) => (
+  <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <CardHeader>
+      <CardTitle className="text-xl font-semibold">{title}</CardTitle>
+      <CardDescription className="text-gray-400">{description}</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <Image
+        src={imageUrl}
+        alt={title}
+        width={600}
+        height={400}
+        className="rounded-md mb-4"
+      />
+      <div className="flex justify-between">
+        <Link href={link} className="text-coral hover:underline">
+          Learn More
+        </Link>
+      </div>
+    </CardContent>
+  </Card>
+);
+
 export default function Home() {
+  const projects = [
+    {
+      title: 'Project Vision',
+      description: 'Reimagining e-commerce for the modern world.',
+      imageUrl: 'https://picsum.photos/600/400',
+      link: '#',
+    },
+    {
+      title: 'Project Clarity',
+      description: 'Simplifying communication through intuitive design.',
+      imageUrl: 'https://picsum.photos/600/400',
+      link: '#',
+    },
+    {
+      title: 'Project Precision',
+      description: 'Developing innovative solutions for data analysis.',
+      imageUrl: 'https://picsum.photos/600/400',
+      link: '#',
+    },
+    {
+      title: 'Project Accelerate',
+      description: 'Accelerating workflows with AI-powered tools.',
+      imageUrl: 'https://picsum.photos/600/400',
+      link: '#',
+    },
+    {
+      title: 'Project Innovate',
+      description: 'Innovating the future with cutting-edge technology.',
+      imageUrl: 'https://picsum.photos/600/400',
+      link: '#',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
@@ -92,72 +153,27 @@ export default function Home() {
         <Parallax offset={15}>
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-semibold mb-12 text-center">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Project Card 1 */}
-              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold">Project Vision</CardTitle>
-                  <CardDescription className="text-gray-400">Reimagining e-commerce for the modern world.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="https://picsum.photos/600/400"
-                    alt="Project Vision"
-                    width={600}
-                    height={400}
-                    className="rounded-md mb-4"
-                  />
-                  <div className="flex justify-between">
-                    <Link href="#" className="text-coral hover:underline">
-                      Learn More
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
 
-              {/* Project Card 2 */}
-              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold">Project Clarity</CardTitle>
-                  <CardDescription className="text-gray-400">Simplifying communication through intuitive design.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="https://picsum.photos/600/400"
-                    alt="Project Clarity"
-                    width={600}
-                    height={400}
-                    className="rounded-md mb-4"
-                  />
-                  <div className="flex justify-between">
-                    <Link href="#" className="text-coral hover:underline">
-                      Learn More
-                    </Link>
+            {/* Scrollable Project Showcase */}
+            <div className="overflow-x-auto whitespace-nowrap py-6">
+              <div className="inline-flex space-x-6 transition-transform duration-300">
+                {projects.map((project, index) => (
+                  <div key={index} className="relative w-64 shrink-0 rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      width={600}
+                      height={400}
+                      className="object-cover aspect-video"
+                    />
+                    <div className="absolute inset-0 bg-black opacity-0 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center">
+                      <Link href={project.link} className="text-coral hover:underline text-lg font-semibold">
+                        Learn More
+                      </Link>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Project Card 3 */}
-              <Card className="bg-gray-800 border-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold">Project Precision</CardTitle>
-                  <CardDescription className="text-gray-400">Developing innovative solutions for data analysis.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="https://picsum.photos/600/400"
-                    alt="Project Precision"
-                    width={600}
-                    height={400}
-                    className="rounded-md mb-4"
-                  />
-                  <div className="flex justify-between">
-                    <Link href="#" className="text-coral hover:underline">
-                      Learn More
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
           </div>
         </Parallax>
